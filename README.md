@@ -1,2 +1,3 @@
-# MedBook-WidgetGeneList
-This is a widget for specifying a list of genes. It uses a service to present gene symbol suggestions.
+# js_wordcloud
+
+Use d3-cloud to create an interactive word cloud.

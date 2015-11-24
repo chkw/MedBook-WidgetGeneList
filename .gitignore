@@ -1,2 +1,5 @@
 .meteor/local
 .meteor/meteorite
+.project
+bower_components/
+geneList/scripts/geneList_plugin_dev.js
