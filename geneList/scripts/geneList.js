@@ -23,9 +23,10 @@ geneListWidget = ( typeof geneListWidget === "undefined") ? {} : geneListWidget;
         var markup = [];
 
         markup.push("<div>");
-        markup.push("id:" + suggestion.id);
-        markup.push("<br>");
-        markup.push("text:" + suggestion.text);
+        // markup.push("id:" + suggestion.id);
+        // markup.push("<br>");
+        // markup.push("text:" + suggestion.text);
+        markup.push(suggestion.id);
         markup.push("</div>");
 
         return markup.join("");
@@ -37,43 +38,6 @@ geneListWidget = ( typeof geneListWidget === "undefined") ? {} : geneListWidget;
      */
     var formatSuggestionSelection = function(suggestion) {
         return suggestion.id || suggestion.text;
-    };
-
-    /**
-     * Contruct markup for displaying suggestion results.
-     * @param {Object} repo
-     */
-    var formatRepo = function(repo) {
-        if (repo.loading)
-            return repo.text;
-
-        var markup = [];
-        markup.push("<div class='select2-result-repository clearfix'>");
-        markup.push("<div class='select2-result-repository__avatar'><img height='64' src='" + repo.owner.avatar_url + "' /></div>");
-        markup.push("<div class='select2-result-repository__meta'>");
-        markup.push("<div class='select2-result-repository__title'>" + repo.full_name + "</div>");
-
-        if (repo.description) {
-            markup.push("<div class='select2-result-repository__description'>" + repo.description + "</div>");
-        }
-
-        markup.push("<div class='select2-result-repository__statistics'>");
-        markup.push("<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + repo.forks_count + " Forks</div>");
-        markup.push("<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + repo.stargazers_count + " Stars</div>");
-        markup.push("<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + repo.watchers_count + " Watchers</div>");
-        markup.push("</div>");
-        markup.push("</div>");
-        markup.push("</div>");
-
-        return markup.join("");
-    };
-
-    /**
-     * ID the selected suggestion.
-     * @param {Object} repo
-     */
-    var formatRepoSelection = function(repo) {
-        return repo.full_name || repo.text;
     };
 
     /**
@@ -120,7 +84,10 @@ geneListWidget = ( typeof geneListWidget === "undefined") ? {} : geneListWidget;
             },
             escapeMarkup : function(markup) {
                 return markup;
-            }, // let our custom formatter work
+            },
+
+            // let our custom formatter work
+            // suggestion object has fields: "id" and "text"
             templateResult : formatSuggestions,
             templateSelection : formatSuggestionSelection
         });

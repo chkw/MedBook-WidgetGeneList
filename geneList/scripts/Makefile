@@ -3,7 +3,7 @@
 
 BOWER_DIR = ../../bower_components
 
-#SCRIPTS = $(BOWER_DIR)/jquery/dist/jquery.js $(BOWER_DIR)/select2/dist/js/select2.js geneList.js
+SCRIPTS_DEPS = $(BOWER_DIR)/jquery/dist/jquery.js $(BOWER_DIR)/select2/dist/js/select2.js geneList.js
 SCRIPTS = geneList.js
 
 TARGETS = geneList_plugin.js
@@ -26,11 +26,23 @@ bower_clean:
 	\
 
 sync_meteor: geneList_plugin_dev.js
-	rsync -avP $< $(METEOR_PACKAGE_DIR)/$< ;
+	rsync -avP $< $(METEOR_PACKAGE_DIR)/geneList_plugin_dev.js;
 	\
 
 geneList_plugin.js: $(SCRIPTS)
 	java -jar $(CLOSURE_COMPILER_JAR) --compilation_level $(COMPILATION_LEVEL) --js_output_file=$@ $(SCRIPTS) ;
+	\
+
+geneList_plugin_deps.js: $(SCRIPTS_DEPS)
+	rm -f 1.tmp ;
+	\
+	for script in $(SCRIPTS_DEPS) ; do \
+		cat $$script >> 1.tmp ; \
+	done ;
+	\
+	mv 1.tmp $@ ;
+	\
+	rm -f 1.tmp ;
 	\
 
 geneList_plugin_dev.js: $(SCRIPTS)

@@ -29,7 +29,7 @@
             // response looks like this: {"items":[{"id":"MDM1","text":"MDM1"},{"id":"MDM2","text":"MDM2"},{"id":"MDM4","text":"MDM4"}]}
             url : "https://api.github.com/search/repositories",
             minimumInputLength : 3,
-            multiple : "multiple",
+            multiple : true,
             changeEventCallback : function(value) {
                 console.log("value", value);
             }
